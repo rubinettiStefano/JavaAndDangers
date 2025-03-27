@@ -20,7 +20,7 @@ public class Controller
 	//model
 	static iCharacterDAO cDao = new CharacterDAO(session);
 	//view
-	static iCharacterView cView = iCharacterView.getInstance("text");
+	static iCharacterView cView = iCharacterView.getInstance("ascii");
 
 	public static void main(String[] args)
 	{

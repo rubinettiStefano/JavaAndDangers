@@ -6,9 +6,15 @@ import utility.exceptions.ObjectNotFoundException;
 
 import java.util.List;
 
-public class CharacterDAO implements iCharacterDAO
+public class CharacterDAO implements DaoInterface<GameCharacter>
 {
 	private Session session;
+
+	public void yeee()
+	{
+		System.out.println("STAMPO YEE");
+	}
+
 
 	public CharacterDAO(Session session)
 	{

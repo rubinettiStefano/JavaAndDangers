@@ -13,7 +13,7 @@ import model.entities.character_enums.Weapon;
 //a livello pratico serve a dire: Hibernate questo lo voglio nel db
 
 @Entity
-public class GameCharacter extends BaseEntity
+public class GameCharacter extends BaseEntity implements Comparable<GameCharacter>
 {
 
 	private String name;
@@ -96,5 +96,35 @@ public class GameCharacter extends BaseEntity
 	public void setShield(boolean shield)
 	{
 		this.shield = shield;
+	}
+
+	@Override
+	public int compareTo(GameCharacter o)
+	{
+		//Deve restituire numero positivo quando this>o
+		//zero quando this pari ad o
+		//negativo quando this<o
+		char[] thisCaratterizzato = this.name.toLowerCase().toCharArray();
+		char[] oCaratterizzato = o.name.toLowerCase().toCharArray();
+
+		for(int i=0;i<thisCaratterizzato.length;i++)
+		{
+			char mio = thisCaratterizzato[i];
+			if(i==oCaratterizzato.length)//se i sfora il secondo array
+				return 1;
+			char tuo = oCaratterizzato[i];
+
+			//stepaazzzz  -this
+			//stepa       -o      length->5
+			//012345
+			if(mio>tuo)
+				return 1;
+			if(tuo>mio)
+				return -1;
+		}
+		if(thisCaratterizzato.length==oCaratterizzato.length)
+			return 0;
+		return -1;
+		//return this.name.compareTo(o.name);
 	}
 }
