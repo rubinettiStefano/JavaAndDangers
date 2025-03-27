@@ -1,4 +1,5 @@
 import model.dao.CharacterDAO;
+import model.dao.DaoInterface;
 import model.dao.iCharacterDAO;
 import model.entities.GameCharacter;
 import model.entities.character_enums.Hair;
@@ -17,7 +18,7 @@ public class Prove
 	public static void main(String[] args)
 	{
 		Session session = HibernateUtil.getSessionFactory().openSession();
-		iCharacterDAO dao = new CharacterDAO(session);
+		DaoInterface<GameCharacter> dao = new CharacterDAO(session);
 
 //		GameCharacter prova = new GameCharacter();
 //		prova.setName("Mimmo");

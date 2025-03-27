@@ -1,6 +1,7 @@
 package controllers;
 
 import model.dao.CharacterDAO;
+import model.dao.DaoInterface;
 import model.dao.iCharacterDAO;
 import model.entities.GameCharacter;
 import model.entities.character_enums.Hair;
@@ -18,12 +19,15 @@ public class Controller
 	static Scanner sc = new Scanner(System.in);
 	static Session session = HibernateUtil.getSessionFactory().openSession();
 	//model
-	static iCharacterDAO cDao = new CharacterDAO(session);
+	static DaoInterface<GameCharacter> cDao = new CharacterDAO(session);
 	//view
 	static iCharacterView cView = iCharacterView.getInstance("ascii");
 
 	public static void main(String[] args)
 	{
+
+
+
 		String cmd;
 		do
 		{

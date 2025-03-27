@@ -8,6 +8,8 @@ import model.entities.character_enums.Hair;
 import model.entities.character_enums.Height;
 import model.entities.character_enums.Weapon;
 
+import java.util.StringJoiner;
+
 //Una Entity è qualcosa del mondo reale che vogliamo modellizzare per poterlo
 //utilizzare dentro il nostro programma
 //a livello pratico serve a dire: Hibernate questo lo voglio nel db
@@ -17,6 +19,7 @@ public class GameCharacter extends BaseEntity implements Comparable<GameCharacte
 {
 
 	private String name;
+	private int powerLevel;
 
 	@Enumerated(EnumType.STRING)
 	private Hair hair;
@@ -126,5 +129,24 @@ public class GameCharacter extends BaseEntity implements Comparable<GameCharacte
 			return 0;
 		return -1;
 		//return this.name.compareTo(o.name);
+	}
+
+	public int getPowerLevel()
+	{
+		return powerLevel;
+	}
+
+	public void setPowerLevel(int powerLevel)
+	{
+		this.powerLevel = powerLevel;
+	}
+
+	@Override
+	public String toString()
+	{
+		return new StringJoiner(" ", "", ".")
+				.add("name: " + name)
+				.add("ha un potere di: " + powerLevel)
+				.toString();
 	}
 }
