@@ -3,6 +3,8 @@ package lamdas;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
+import java.util.Scanner;
 
 public class StreamELambda
 {
@@ -40,6 +42,7 @@ public class StreamELambda
 		for(Persona p:persone)
 			nominativi.add(p.getNome()+" "+p.getCognome());
 
+		//filtro
 		//noi per motivi di standardizzazione e performance vogliamo usare un altro modo
 		//uno stream è una COLLEZIONE DI LAVORO, qualcosa di AMORFO che ha metodi per
 		//eseguire operazioni sui dati
@@ -55,10 +58,13 @@ public class StreamELambda
 		//test è un metodo che deve produrre un booleano
 		//se produce true applicato all'elemento, l'elemento viene tenuto, altrimenti
 		//viene scartato
+
+		//mappatura
 		List<String> nominativi2 = 	persone. //prendiamo la lista
 									stream().//la trasformiamo in Stream
 									map(p->p.getNome()+" "+p.getCognome()).//mappiamo
 									toList();
+
 
 		List<String> nominativiMeno25 = persone. //prendiamo la lista
 										stream().//la trasformiamo in Stream
@@ -95,6 +101,33 @@ public class StreamELambda
 										.filter(d-> d.isAfter(LocalDate.now()))
 										.toList();
 
+		//Optional
+
+		Scanner sc = new Scanner(System.in);
+		System.out.println("Dammi id");
+		Long id = Long.parseLong(sc.nextLine());
+
+		Optional<Persona> boxettonePersona = persone.stream()
+											.filter(p->p.getId()==id)
+											.findFirst();
+
+		//un optional è una scatola che può contenere o no una persona
+		if(boxettonePersona.isPresent())//se c'è una persona nella scatola
+		{
+			Persona p = boxettonePersona.get();//prendo la persona nella scatola
+			//faccio ciò che voglio
+		}
+		else
+		{
+			System.out.println("Persona non trovata");
+		}
+
+
+		//riduzione
+		double media = 	persone.stream().
+						mapToInt(p->p.getEta())//mappa tutte persone alla loro età
+						.average()//calcola la media
+						.orElse(0);//se la lista è vuota e non ci riesci metti 0
 
 	}
 }
