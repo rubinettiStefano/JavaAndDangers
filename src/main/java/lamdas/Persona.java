@@ -1,17 +1,19 @@
 package lamdas;
 
+import java.time.LocalDate;
+
 public class Persona
 {
 	private Long id;
 	private String nome,cognome;
-	private int eta;
+	private LocalDate dob;
 
-	public Persona(Long id, String nome, String cognome, int eta)
+	public Persona(Long id, String nome, String cognome, LocalDate dob)
 	{
 		this.id = id;
 		this.nome = nome;
 		this.cognome = cognome;
-		this.eta = eta;
+		this.dob = dob;
 	}
 
 	public Persona()
@@ -48,14 +50,9 @@ public class Persona
 		this.cognome = cognome;
 	}
 
-	public int getEta()
+	public LocalDate getDob()
 	{
-		return eta;
-	}
-
-	public void setEta(int eta)
-	{
-		this.eta = eta;
+		return dob;
 	}
 }
 
