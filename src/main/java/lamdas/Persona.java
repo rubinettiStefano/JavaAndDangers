@@ -54,5 +54,11 @@ public class Persona
 	{
 		return dob;
 	}
+
+	public int getEta()
+	{
+		//TODO, fate voi il calcolo qui
+		return 0;
+	}
 }
 
